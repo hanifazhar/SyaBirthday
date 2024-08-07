@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+    transition: all 0.2s linear;
+}
+
+body {
+    background: #eee;
+}
+
+.penutup {
+    margin-bottom: 3rem;
+    text-align: justify;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    overflow: hidden;
+}
+
+.container {
+    width: 90%;
+    margin: 3rem auto 0;
+}
+
+.container .heading {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.container .desk {
+    font-size: 1rem;
+    text-align: justify;
+    font-weight: 500;
+}
+
+.container .foto-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+}
+
+.container .foto-container .data {
+    text-align: center;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+.container .foto-container .data img {
+    width: 100%;
+}
+
+.container .foto-container .data img:hover {
+    transform: scale(0.95);
+}
+
+.container .foto-container .data .btn {
+    color: #eee;
+    padding: 0.8rem 1.5rem;
+    background-color: #333;
+    border-radius: 0.5rem;
+    border: none;
+    margin: 1rem auto;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 700;
+}
+
+.container .foto-container .data .btn:hover {
+    opacity: 0.8;
+}
+
+.container .foto-container .data .btn:active {
+    opacity: 0.5;
+}
+
+.preview {
+    position: fixed;
+    width: 50%;
+    max-height: 265px; /* Menggunakan max-height agar tidak terlalu panjang */
+    border-radius: 7px;
+    margin: auto; /* Menggunakan auto pada margin agar berada di tengah horizontal */
+    top: 50%; /* Menempatkan popup di tengah layar vertikal */
+    left: 50%; /* Menempatkan popup di tengah layar horizontal */
+    transform: translate(-50%, -50%); /* Menggeser popup ke tengah dengan translate */
+    padding: 1.5rem;
+    background-color: #fff;
+    display: none; /* Menjadikan .preview sebagai flex container */
+    flex-direction: row; /* Asumsi pop-up memiliki layout horizontal (row) */
+    gap: 1rem;
+    z-index: 2;
+}
+
+.preview .kanan {
+    padding-bottom: 1.5rem;
+    position: relative;
+}
+
+.preview img {
+    width: 30%;
+    height: 30%;
+    position: sticky;
+    top: 0;
+}
+
+.preview h3 {
+    font-size: 16px;
+    font-weight: 400;
+    padding-top: 0;
+    padding-right: 1rem;
+    margin-top: 0;
+    max-height: calc(100% - 1.5rem);
+    border: none;
+    text-align: justify;
+    overflow-y: auto; /* Jika kontennya lebih panjang dari container */
+    flex-grow: 1; /* Membuat h3 mengambil sisa lebar flex container */
+ /* Menghilangkan margin bawaan dari h3 */
+}
+
+/* Menambahkan aturan CSS untuk tombol tutup */
+.btn-close {
+    background: #333;
+    color: #eee;
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    font-weight: 700;
+}
+
+.btn-close:hover{
+    opacity: 0.7;
+}
+
+.btn-close:active{
+    opacity: 0.5;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+/* Tambahkan media query untuk layar berukuran 830px atau kurang */
+@media screen and (max-width: 830px) {
+
+    .container .foto-container{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+    }
+
+    .container .foto-container .data h2{
+        font-size: 16px;
+        padding: 1rem auto;
+    }
+
+    .container .foto-container .data button {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .preview {
+        position: fixed;
+        width: 50%; /* Menggunakan persentase agar lebih responsif */
+        max-height: 80vh; /* Maksimum tinggi sebagai persentase dari tinggi viewport */
+        border-radius: 7px;
+        margin: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 1.5rem;
+        background-color: #fff;
+        display: none;
+        flex-direction: column; /* Mengubah layout menjadi kolom */
+        gap: 1rem;
+        z-index: 2;
+    }
+    
+    .preview img {
+        width: 100%;
+        max-height: 30%; /* Maksimum tinggi gambar */
+        object-fit: cover;
+        z-index: inherit;
+        border-radius: 3px;
+    }
+
+    .preview .kanan {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        overflow-y: auto;
+        overflow-y: hidden;
+    }
+    
+    .preview .kanan h3 {
+        font-size: 14px;
+        font-weight: 400;
+        padding: 1.5rem 0;
+        margin: 0;
+        text-align: justify;
+    }
+    
+    .preview .kanan .btn-close {
+        width: 100%;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1;
+        position: relative;
+        bottom: 0;
+        margin-top: 1rem;
+    }    
+}
+
